@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class FooBarQixTest extends TestCase {
-    private final Transformer transformer = new Transformer(FooBarQix.MATCHERS);
+    private final Transformer transformer = new Transformer(FooBarQix.CORRESPONDANCIES);
 
     @Test
     public void testTransform()
@@ -28,6 +28,12 @@ public class FooBarQixTest extends TestCase {
         spec.put(8, "8");
         spec.put(9, "Foo");
         spec.put(10, "Bar");
+        spec.put(21, "FooQix");
+        spec.put(13, "Foo");
+        spec.put(15, "FooBarBar");
+        spec.put(33, "FooFooFoo");
+        spec.put(51, "FooBar");
+        spec.put(53, "BarFoo");
         for (final Entry<Integer, String> entry : spec.entrySet()) {
             final int number = entry.getKey();
             final String expected = entry.getValue();

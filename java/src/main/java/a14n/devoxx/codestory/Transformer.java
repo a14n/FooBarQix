@@ -1,35 +1,62 @@
 package a14n.devoxx.codestory;
 
-import a14n.devoxx.codestory.matcher.Matcher;
-
-import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class Transformer {
-    private final List<Matcher> matchers;
+    private final Map<Integer, String> correspondancies;
 
-    public Transformer(final List<Matcher> matchers)
+    public Transformer(Map<Integer, String> correspondancies)
     {
-        this.matchers = matchers;
+        this.correspondancies = correspondancies;
     }
 
-    public String transform(final int number)
+    public String transform(int number)
     {
         final StringBuilder result = new StringBuilder();
         transform(number, result);
         return result.toString();
     }
 
-    public void transform(final int number, final StringBuilder result)
+    public void transform(int number, StringBuilder result)
     {
-        boolean hasMatch = false;
-        for (final Matcher matcher : this.matchers) {
-            if (matcher.match(number)) {
-                hasMatch = true;
-                result.append(matcher.getValue());
-            }
-        }
-        if (!hasMatch) {
+        boolean matches = false;
+        matches |= appendTextIfMultiple(number, result);
+        matches |= appendTextIfContains(number, result);
+        if (!matches) {
             result.append(number);
         }
+    }
+
+    private boolean appendTextIfMultiple(int number, StringBuilder result)
+    {
+        boolean isMultiple = false;
+        for (Entry<Integer, String> e : correspondancies.entrySet()) {
+            if (number % e.getKey() == 0) {
+                result.append(e.getValue());
+                isMultiple = true;
+            }
+        }
+        return isMultiple;
+    }
+
+    private boolean appendTextIfContains(int number, StringBuilder result)
+    {
+        final boolean contains;
+        final int lastDigit;
+        if (number >= 10) {
+            contains = appendTextIfContains(number / 10, result);
+            lastDigit = number % 10;
+        } else {
+            contains = false;
+            lastDigit = number;
+        }
+        for (Entry<Integer, String> e : correspondancies.entrySet()) {
+            if (lastDigit == e.getKey()) {
+                result.append(e.getValue());
+                return true;
+            }
+        }
+        return contains;
     }
 }
