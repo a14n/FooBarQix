@@ -1,1 +1,2 @@
 For java version : cd java && mvn clean compile exec:java
+For js version, open js/fooBarQix.html
