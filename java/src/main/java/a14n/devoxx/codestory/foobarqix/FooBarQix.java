@@ -1,4 +1,4 @@
-package a14n.devoxx.codestory;
+package a14n.devoxx.codestory.foobarqix;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;

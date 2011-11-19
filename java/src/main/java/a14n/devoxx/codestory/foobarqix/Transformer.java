@@ -1,4 +1,4 @@
-package a14n.devoxx.codestory;
+package a14n.devoxx.codestory.foobarqix;
 
 import java.util.Map;
 import java.util.Map.Entry;

@@ -1,4 +1,7 @@
-package a14n.devoxx.codestory;
+package a14n.devoxx.codestory.foobarqix;
+
+import a14n.devoxx.codestory.foobarqix.FooBarQix;
+import a14n.devoxx.codestory.foobarqix.Transformer;
 
 import junit.framework.TestCase;
 
