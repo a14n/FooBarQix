@@ -18,16 +18,29 @@ public class FooBarQix {
         CORRESPONDANCIES = Collections.unmodifiableMap(correspondancies);
     }
 
-    public static void main(final String[] args)
+    private final Transformer transformer = new Transformer(FooBarQix.CORRESPONDANCIES);
+
+    private String getResult()
     {
-        final long start = System.nanoTime();
-        final Transformer transformer = new Transformer(FooBarQix.CORRESPONDANCIES);
         final StringBuilder result = new StringBuilder();
         for (int i = 1; i < MAX_NUMBER; i++) {
             transformer.transform(i, result);
             result.append(LINE_SEPARATOR);
         }
-        System.out.print(result);
+        return result.toString();
+    }
+
+    String transform(int number)
+    {
+        return transformer.transform(number);
+    }
+
+    public static void main(final String[] args)
+    {
+        final FooBarQix fooBarQix = new FooBarQix();
+
+        final long start = System.nanoTime();
+        System.out.print(fooBarQix.getResult());
         System.out.printf("%d ns. for %d elements.%n", System.nanoTime() - start, MAX_NUMBER);
     }
 }

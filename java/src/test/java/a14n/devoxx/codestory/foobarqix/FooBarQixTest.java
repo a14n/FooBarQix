@@ -1,8 +1,5 @@
 package a14n.devoxx.codestory.foobarqix;
 
-import a14n.devoxx.codestory.foobarqix.FooBarQix;
-import a14n.devoxx.codestory.foobarqix.Transformer;
-
 import junit.framework.TestCase;
 
 import org.junit.Test;
@@ -15,8 +12,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class FooBarQixTest extends TestCase {
-    private final Transformer transformer = new Transformer(FooBarQix.CORRESPONDANCIES);
-
     @Test
     public void testTransform()
     {
@@ -37,10 +32,12 @@ public class FooBarQixTest extends TestCase {
         spec.put(33, "FooFooFoo");
         spec.put(51, "FooBar");
         spec.put(53, "BarFoo");
+
+        final FooBarQix fooBarQix = new FooBarQix();
         for (final Entry<Integer, String> entry : spec.entrySet()) {
             final int number = entry.getKey();
             final String expected = entry.getValue();
-            assertThat("bad transformation for " + number, transformer.transform(number), is(expected));
+            assertThat("bad transformation for " + number, fooBarQix.transform(number), is(expected));
         }
     }
 }
