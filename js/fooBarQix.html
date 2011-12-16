@@ -9,8 +9,8 @@
 
   <body>
     <script src="fooBarQix.js"></script>
-    <script>
-document.body.innerHTML = getFooBarQix(100).join('<br/>');
-    </script>
+    <input value="100" id="number"/><button id="go" onclick="document.getElementById('result').innerHTML = getFooBarQix(parseInt(document.getElementById('number').value)).join('<br/>');">FooBarQix</button>
+    <div id="result"><div>
+    <script>document.getElementById('go').click();</script>
   </body>
 </html>
